@@ -4,28 +4,62 @@
 <p class="p-2">Hola, este es tu primer sitio en Django</p>
 <h2>Pokemones</h2>
 <ul class="list-group">
-
+    <a href="{% url 'pokedex:add_pokemon' %}">Agregar Pokemon</a>
     <div class="row">
         {% for pokemon in pokemons %}
         <div class="col-sm-12 col-md-6 col-lg-4">
-            <a class="card" style="width: 18rem;" href="{% url 'pokemon' pokemon.id %}">
+            <a class="card" style="width: 18rem;">
                 {%if pokemon.picture %}
                 <img src="{{ pokemon.picture.url }}" class="card-img-top" alt="{{ pokemon.name }}">
                 {% endif %}
                 <div class="card-body">
-                    <p class="card-text">{{ pokemon.name }}</p>
+                    <p class="card-title">{{ pokemon.name }}</p>
+                    <p class="card-text">Tipo: {{ pokemon.type }}</p>
+                    <a href="pokemon/{{ pokemon.id }}" class="btn btn-primary">
+                        <i class="fa-regular fa-eye"></i>
+                    </a>
+                    <a href="edit_pokemon/{{ pokemon.id }}" class="btn btn-primary">
+                        <i class="fa-solid fa-pencil"></i>
+                    </a>
+                    <a href="delete_pokemon/{{ pokemon.id }}" class="btn btn-danger"
+                        onclick="return confirm('¿Estás seguro de que deseas eliminar este pokemon?');">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
                 </div>
             </a>
         </div>
 
         {% endfor %}
+    </div>
 </ul>
 <h2>Entrenadores</h2>
 <ul class="list-group">
-    {% for trainer in trainers %}
-    <li class="list-group-item">
-        <a href="trainer/{{trainer.id}}/">{{ trainer.name}} {{trainer.lastname}}</a>
-    </li>
-    {% endfor %}
+    <a href="{% url 'pokedex:add_trainer' %}">Agregar Entrenador</a>
+    <div class="row">
+        {% for trainer in trainers %}
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <a class="card" style="width: 18rem;">
+                {%if trainer.picture %}
+                <img src="{{ trainer.picture.url }}" class="card-img-top" alt="{{ trainer.name }}">
+                {% endif %}
+                <div class="card-body">
+                    <p class="card-title">{{ trainer.name }} {{ trainer.lastname }}</p>
+                    <p class="card-text">Nivel: {{ trainer.level }}</p>
+                    <a href="trainer/{{ trainer.id }}" class="btn btn-primary">
+                        <i class="fa-regular fa-eye"></i>
+                    </a>
+                    <a href="edit_trainer/{{ trainer.id }}" class="btn btn-primary">
+                        <i class="fa-solid fa-pencil"></i>
+                    </a>
+                    <a href="delete_trainer/{{ trainer.id }}" class="btn btn-danger"
+                        onclick="return confirm('¿Estás seguro de que deseas eliminar este entrenador?');">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                </div>
+            </a>
+        </div>
+
+        {% endfor %}
+    </div>
 </ul>
 {% endblock content %}

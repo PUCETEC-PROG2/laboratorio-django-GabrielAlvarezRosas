@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-            <p>Entrenador: <strong>{{ trainer.name }} {{ trainer.lastname }}</strong></p>
-            <h3>Características:</h3>
-            <ul>
-                <li> Nombre: {{trainer.name}}</li>              
-                <li> Apellido: {{trainer.lastname}}</li>
-                <li> Fecha de Nacimiento: {{trainer.birthdate}}</li>
-                <li> Nivel: {{trainer.level}}</li>
-            </ul>
+<p>Entrenador: <strong>{{ trainer.name }} {{ trainer.lastname }}</strong></p>
+<h3>Características:</h3>
+<ul>
+    {%if trainer.picture %}
+    <img style="border: 5px solid; color: cadetblue;" src="{{ trainer.picture.url }}" width="200" height="300"  alt="{{ trainer.name }}">
+    {% endif %}
+    <li> Nombre: {{trainer.name}}</li>
+    <li> Apellido: {{trainer.lastname}}</li>
+    <li> Fecha de Nacimiento: {{trainer.birthdate}}</li>
+    <li> Nivel: {{trainer.level}}</li>
+        
+</ul>
+<a href="{% url 'pokedex:index' %}" class="btn btn-secondary">Regresar</a>
 {% endblock content %}

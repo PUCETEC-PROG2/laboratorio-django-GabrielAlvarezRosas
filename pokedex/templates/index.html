@@ -12,7 +12,7 @@
         <div class="col-sm-12 col-md-6 col-lg-4">
             <a class="card" style="width: 18rem;">
                 {%if pokemon.picture %}
-                <img src="{{ pokemon.picture.url }}" class="card-img-top" alt="{{ pokemon.name }}">
+                <img src="{{ pokemon.picture.url }}" class="card-img-top" width="250" height="350"  alt="{{ pokemon.name }}">
                 {% endif %}
                 <div class="card-body">
                     <p class="card-title">{{ pokemon.name }}</p>
@@ -46,7 +46,7 @@
         <div class="col-sm-12 col-md-6 col-lg-4">
             <a class="card" style="width: 18rem;">
                 {%if trainer.picture %}
-                <img src="{{ trainer.picture.url }}" class="card-img-top" alt="{{ trainer.name }}">
+                <img src="{{ trainer.picture.url }}" class="card-img-top" width="200" height="350" alt="{{ trainer.name }}">
                 {% endif %}
                 <div class="card-body">
                     <p class="card-title">{{ trainer.name }} {{ trainer.lastname }}</p>

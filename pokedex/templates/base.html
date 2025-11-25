@@ -1,25 +1,40 @@
-
 {% load static %}
 <html>
-    <head>
-        <title>Pokedex</title>
-        <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet" >
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <div class="container">
-            <div class="bg-primary text-white p-4 text-center">
-                <img src="{% static 'pokedexlogo.png' %}" alt="" class="img-fluid" />
-            </div>
-            
-            {% if user.is_authenticated %}          
-                <a href="  {% url 'logout' %}" class="btn btn-secondary">Salir</a>
-            {% else %}
-                <a href="  {% url 'pokedex:login' %}"class="btn btn-secondary">Iniciar Sesión</a>
-            {% endif %}
 
-            {% block content %}{% endblock content %}
-        </div>        
-    </body>
+<head>
+    <title>Pokedex</title>
+    <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="bg-primary text-white p-4 text-center">
+            <img src="{% static 'pokedexlogo.png' %}" alt="" class="img-fluid" />
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #34495E;">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center ">
+                <a class="navbar-brand" href="{% url 'pokedex:index' %}">Pokemones</a>
+                <a class="navbar-brand" href="{% url 'pokedex:view_trainers' %}">Entrenadores</a>
+
+                {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="btn btn-danger">Cerrar Sesión</a>
+                {% else %}
+                <a href="{% url 'pokedex:login' %}" class="btn btn-primary">Iniciar Sesión</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+
+        {% block content %}{% endblock content %}
+    </div>
+</body>
+
 </html>

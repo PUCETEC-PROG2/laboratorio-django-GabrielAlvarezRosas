@@ -6,6 +6,7 @@ app_name = 'pokedex'
 
 urlpatterns = [
     path("", views.index, name="index"),
+    path("trainers/", views.view_trainers, name="view_trainers"),
     path("pokemon/<int:id>/", views.pokemon, name="pokemon"),
     path("trainer/<int:id>/", views.trainer, name="trainer"),
     path("add_pokemon/", views.add_pokemon, name="add_pokemon"),

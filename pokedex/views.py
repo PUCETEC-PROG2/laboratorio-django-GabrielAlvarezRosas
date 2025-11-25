@@ -12,9 +12,13 @@ from pokedex.forms import TrainerForm
 
 def index(request):
     pokemons = Pokemon.objects.all()
-    trainers = Trainer.objects.all()
     template = loader.get_template('index.html')
-    return HttpResponse(template.render({'pokemons': pokemons, 'trainers': trainers}, request))
+    return HttpResponse(template.render({'pokemons': pokemons}, request))
+
+def view_trainers(request):
+    trainers = Trainer.objects.all()
+    template = loader.get_template('index_trainers.html')
+    return HttpResponse(template.render({'trainers': trainers}, request))
 
 def pokemon(request, id:int):
     pokemon = Pokemon.objects.get(id=id)

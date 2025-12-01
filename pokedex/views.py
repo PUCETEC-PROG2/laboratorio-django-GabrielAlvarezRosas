@@ -56,7 +56,7 @@ def add_trainer(request):
         form= TrainerForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('pokedex:index')            
+            return redirect('pokedex:view_trainers')            
     else:
         form = TrainerForm()
 
@@ -82,7 +82,7 @@ def edit_trainer(request, trainer_id):
         form= TrainerForm(request.POST, request.FILES, instance=trainer)
         if form.is_valid():
             form.save()
-            return redirect('pokedex:index')
+            return redirect('pokedex:view_trainers')
     else:
         form = TrainerForm(instance=trainer)
 
@@ -98,7 +98,7 @@ def delete_pokemon(request, pokemon_id):
 def delete_trainer(request, trainer_id):
     trainer = Trainer.objects.get(id=trainer_id)
     trainer.delete()
-    return redirect('pokedex:index')
+    return redirect('pokedex:view_trainers')
 
 class CustomLoginView (LoginView):
     template_name = 'login_form.html'

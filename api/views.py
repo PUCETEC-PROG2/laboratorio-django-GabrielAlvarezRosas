@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
-from pokedex.models import Pokemon
-from .serializers import PokemonSerializer
+from pokedex.models import Pokemon, Trainer
+from .serializers import PokemonSerializer, TrainerSerializer
 
 class PokemonViewSet(viewsets.ModelViewSet):
     queryset = Pokemon.objects.all()
@@ -11,3 +11,9 @@ class PokemonViewSet(viewsets.ModelViewSet):
 
     #def get_permissions(self):
      #   if self.request.method in ['GET', 'POST', 'PUT', 'DELETE']
+
+class TrainerViewSet(viewsets.ModelViewSet):
+    queryset = Trainer.objects.all()
+    serializer_class = TrainerSerializer    
+
+    requiered_scopes = ['write']
